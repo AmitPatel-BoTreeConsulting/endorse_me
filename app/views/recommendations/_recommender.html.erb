@@ -1,0 +1,15 @@
+<div class="_posts_record">
+  <li class="ui-tabs-nav-item ui-tabs-hover" id="nav-fragment-_posts_5098aab81c0ff71401b2ab1d">
+    <a class="contributor ui-tabs-target" href="#" rel="<%= 'recommendation_' + recommender.id.to_s%>">
+      <div class="contributor-image">
+        <%= image_tag recommender.photo_url, class: "contributor-img"%>
+      </div>
+      <div class="contributor-info">
+        <span class="name"><%= recommender.name %></span>
+        <br/>
+        <span class="relation"> <%= recommender.title %>, <%= recommender.company %> </span>
+      </div>
+      <div class="active-arrow"></div>
+    </a>
+  </li>
+</div>

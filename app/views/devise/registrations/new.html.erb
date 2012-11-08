@@ -1,0 +1,27 @@
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "sign-up", id: "register"}) do |f| %>
+    <div class="sign-up-group" id="account-info">
+
+      <div class="fb-header">
+        <h1>Complete Your Registration</h1>
+      </div>
+      <%= render "shared/error_messages", target: @user %>
+
+      <div class="fb-row">
+        <div class="fb-label">Name</div>
+        <div class="fb-input"><%= f.text_field :name %> </div>
+      </div>
+
+      <div class="fb-row">
+        <div class="fb-label">Bio</div>
+        <div class="fb-input"><%= f.text_field :bio %> </div>
+      </div>
+
+      <div class="fb-row">
+        <div class="fb-label">Email</div>
+        <div class="fb-input"><%= f.text_field :email %> </div>
+      </div>
+      <div class="fb-extra">
+        <%= f.submit "Sign up", class: "fb-submit", :style=> 'float:right' %>
+      </div>
+    </div>
+<% end %>

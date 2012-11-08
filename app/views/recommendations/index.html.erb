@@ -1,0 +1,88 @@
+<div id="header">
+  <div id="header-container">
+    <div id="logo-container">
+      <a href="/" id="logo">Endorse.me</a>
+    </div>
+    <div id="nav">
+      <% if  user_signed_in? %>
+          <%= link_to "Logout", destroy_user_session_path, :method => :delete, id: "login-button", class: "fancybox bar-button" %>
+      <% else %>
+          <%= link_to "Login", user_omniauth_authorize_path(:twitter), id: "login-button", class: "fancybox bar-button" %>
+          <%= link_to "Register", user_omniauth_authorize_path(:twitter), id: "register-button", class: "fancybox bar-button" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="flash_messages">
+  </div>
+  <div class="page_container"/>
+  <div id="profile-content">
+    <div id="contributors">
+      <div id="perspectives">
+        <div id="number">
+        <span class="_posts_length">
+        <%= @recommendations ? @recommendations.length : 0 %>
+        </span>
+        </div>
+        <div id="label"><span class="_endorsements">Endorsements</span></div>
+      </div>
+      <div id="contributor-scroll">
+        <div style="height: 370px;" class="scrollbar disable">
+          <div style="height: 370px;" class="track">
+            <div style="top: 0px; height: 370px;" class="thumb"></div>
+          </div>
+        </div>
+        <div class="viewport">
+          <div style="top: 0px;" class="overview me_overview">
+            <ul class="ui-tabs-nav" id="featured-ul">
+              <div id="_posts">
+                <%= render :partial => 'recommender', :collection => @recommendations %>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="_user_509520062e23a51200000fcc" class="_user_record">
+      <div id="person">
+        <div id="person-photo-c">
+          <%= image_tag "resize.jpeg", id: "person-photo" %>
+        </div>
+        <div id="person-info">
+          <% if signed_in? %>
+              <h1><%= current_user.name %></h1>
+
+              <h2 class="bio"><%= current_user.bio %></h2>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div id="featured">
+      <% if !@recommendations.present? && signed_in? %>
+          <div id="linkedin-import-row" class="square">
+            <%= link_to "", user_omniauth_authorize_path(:linkedin), class: "LinkedInLogo linkedin-import" %>
+            <div id="linkedin-import">
+              <a class="linkedin-import" href="#" token="904c75ea-d1f3-4caa-9b71-78f8d0b80c14">Import from LinkedIn</a>
+            </div>
+          </div>
+      <% else %>
+          <%= render :partial => 'post', :collection => @recommendations %>
+          </div>
+      <% end %>
+      </div>
+</div>
+
+<script type="text/javascript">
+$(function() {
+    $("#_posts div:first-child li").addClass('ui-tabs-selected');
+    $("#featured div:first-child").fadeIn('slow');
+
+    $("#_posts div > li > a").live('click', function() {
+        $("#_posts .ui-tabs-selected").removeClass('ui-tabs-selected');
+
+        $(this).parent().addClass('ui-tabs-selected');
+
+        $('#featured div:visible').fadeOut('slow');
+        $('#' + $(this).attr('rel')).fadeIn('slow');
+    });
+});
+</script>

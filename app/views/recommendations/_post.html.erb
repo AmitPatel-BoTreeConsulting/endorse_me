@@ -1,0 +1,19 @@
+<div id="<%= dom_id(post)%>" class="post ui-tabs-panel" style="display: none;">
+    <div class="viewport">
+        <div class="overview">
+            <div class="post-text" style="font-size: 21.0424px;">
+                <p class="response-text">“<%=post.recommendation%>”</p>
+            </div>
+        </div>
+    </div>
+    <div class="post-contributor">
+        <!--<a href="#" class="social-link"><%=post.name%></a>-->
+      <%=post.name%>
+    </div>
+    <div class="post-relation">
+        <%= post.title %>, <%= post.company %>
+    </div>
+    <div class="post-date">
+        imported on <%= post.updated_at.strftime('%B %e, %Y') %>
+    </div>
+</div>
