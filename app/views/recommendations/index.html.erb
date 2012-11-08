@@ -81,7 +81,7 @@ $(function() {
 
         $(this).parent().addClass('ui-tabs-selected');
 
-        $('#featured div:visible').fadeOut('slow');
+        $('#featured div.post:visible').fadeOut('slow');
         $('#' + $(this).attr('rel')).fadeIn('slow');
     });
 });
